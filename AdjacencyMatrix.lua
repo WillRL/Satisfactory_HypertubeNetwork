@@ -160,20 +160,22 @@ end
 
 function AdjacencyMatrix:print()
     --- Prints the matrix out nicely
-    io.write("   ")
+    spacer = "  "
+    col_header_format = "     "
     for i = 1, AdjacencyMatrix.size do
-        io.write(string.format("%3d", i))
+        col_header_format = col_header_format..i..spacer
     end
-    io.write("\n")
+    print(col_header_format)
+
     for row in pairs(self.__adjacency_matrix) do
-        io.write(string.format("%3d", row))
+        row_format = spacer
+        row_format = row_format..row..spacer
         for _, value in ipairs(self.__adjacency_matrix[row]) do
-            io.write(string.format("%3d", value))
+            row_format = row_format..value..spacer
         end
-        io.write("\n")
+        print(row_format)
     end
 end
-
 
 
 
