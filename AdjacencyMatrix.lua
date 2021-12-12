@@ -178,29 +178,5 @@ end
 
 
 
-test = AdjacencyMatrix:new(nil, 8)
 
-test:connect(1,2, false)
-test:connect(2,3, false)
-test:connect(3,4, false)
-test:connect(2,5, false)
-test:connect(5,6, false)
-test:connect(5,7, false)
-test:connect(6,8, false)
-test:print()
-
-
-test:assign_location(1, {x=0, y=0, z=0})
-test:assign_location(2, {x=1, y=1, z=0})
-test:assign_location(3, {x=1, y=3, z=1})
-test:assign_location(4, {x=1, y=4, z=1})
-test:assign_location(5, {x=3, y=1, z=0})
-test:assign_location(6, {x=5, y=3, z=3})
-test:assign_location(7, {x=3, y=1, z=1})
-test:assign_location(8, {x=6, y=4, z=4})
-
-path = test:generate_path(1, 8)
-for _, val in ipairs(path) do
-    print(val)
-end
 
