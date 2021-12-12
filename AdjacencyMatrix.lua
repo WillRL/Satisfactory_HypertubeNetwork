@@ -2,9 +2,6 @@
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
 
-filesystem.initFileSystem("/dev")
-filesystem.makeFileSystem("tmpfs", "tmp")
-filesystem.mount("/dev/tmp","/")
 filesystem.doFile("PriorityQueue.lua")
 
 AdjacencyMatrix = {size}
@@ -176,7 +173,6 @@ function AdjacencyMatrix:print()
         io.write("\n")
     end
 end
-
 
 
 
