@@ -7,7 +7,7 @@ print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
 
-function run()
+function run(size, debug)
     --- Main function to run the loop.
     ---
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
@@ -17,7 +17,7 @@ function run()
     local generate_path = panel:getModule(3,0)
     local update_software = panel:getModule(9,9)
 
-    local hyper_network = AdjacencyMatrix:new(nil, 10)
+    local hyper_network = AdjacencyMatrix:new(nil, size, debug)
     local hyper_network_names = {}
     local hyper_network_dest_vertices = {}
     local current_entrance = 1

@@ -38,4 +38,4 @@ file3:close()
 
 
 fs.doFile("MainComputer.lua")
-run()
+run(10, false)

@@ -14,7 +14,7 @@ local min_comparator = function(a, b)
     return b < a
 end
 
-function AdjacencyMatrix:new(o, n)
+function AdjacencyMatrix:new(o, n, debug)
     --- Constructor for Adjacency matrix
     ---@param n number: The size (n by n) of the matrix
     o = {} or o
@@ -22,6 +22,7 @@ function AdjacencyMatrix:new(o, n)
     self.__index = self
     self.size = n
     self.mapping = {}
+    self.__debug = debug
 
     matrix = {}
     for i=1,n do
@@ -92,14 +93,22 @@ function AdjacencyMatrix:check_exist(vert)
     return self.__adjacency_matrix[vert] ~= nil
 end
 
-function AdjacencyMatrix:euclidean_dist(vert1, vert2)
+function AdjacencyMatrix:euclidean_dist(vert1, vert2, debug)
     --- Calculates the euclidean distance between two vertices
     ---@param vert1 number: The first vertex
     ---@param vert2 number: The second vertex
     ---@return number: The euclidean distance
+    if debug then
+        print(vert1)
+        print(vert2)
+    end
 
     vert1 = self.mapping[vert1]
     vert2 = self.mapping[vert2]
+    if debug then
+        print(vert1)
+        print(vert2)
+    end
     return math.sqrt((vert1["x"] + vert2["x"])^2+(vert1["y"] + vert2["y"])^2+(vert1["z"] + vert2["z"])^2)
 end
 
@@ -109,8 +118,9 @@ function AdjacencyMatrix:generate_path(origin, target)
     ---@param target number: The end target vertex
     ---@return table: The vertices that connect origin to target (In reverse order)
 
-    previousNodes = AdjacencyMatrix:A_star(origin, target)
-    path = {target}
+    local previousNodes = AdjacencyMatrix:A_star(origin, target)
+    local path = {target}
+    local current = target
     while previousNodes[current] ~= nil do
         current = previousNodes[current]
         path[#path + 1] = current
@@ -125,11 +135,11 @@ function AdjacencyMatrix:A_star(start, goal)
     ---@param goal number: The final destination
     ---@return table: A list that keeps track of all the previous nodes visited.
 
-    openSet = PriorityQueue.new(min_comparator)
+    local openSet = PriorityQueue.new(min_comparator)
 
-    previousNodes = {}
-    gScore = {}
-    fScore = {}
+    local previousNodes = {}
+    local gScore = {}
+    local fScore = {}
     setmetatable(gScore, {__index = function () return math.huge end})
     setmetatable(fScore, {__index = function () return math.huge end})
 
@@ -139,19 +149,19 @@ function AdjacencyMatrix:A_star(start, goal)
     openSet:Add(start, fScore[start])
 
     while openSet:Size() ~= 0 do
-        current = openSet:Pop()
+        local current = openSet:Pop()
         if current == goal then
             return previousNodes
         end
 
-        neighbours = AdjacencyMatrix:get_neighbours(current)
+        local neighbours = AdjacencyMatrix:get_neighbours(current)
 
         for _, neighbour in ipairs(neighbours) do
-            tentative_gScore = gScore[current] + AdjacencyMatrix:euclidean_dist(current, neighbour)
+            local tentative_gScore = gScore[current] + AdjacencyMatrix:euclidean_dist(current, neighbour)
             if tentative_gScore < gScore[neighbour] then
                 previousNodes[neighbour] = current
                 gScore[neighbour] = tentative_gScore
-                fScore[neighbour] = tentative_gScore + AdjacencyMatrix:euclidean_dist(neighbour, goal)
+                fScore[neighbour] = tentative_gScore + AdjacencyMatrix:euclidean_dist(neighbour, goal, self.__debug)
                 if not openSet:contains(neighbour) then
                     openSet:Add(neighbour, fScore[neighbour])
                 end
@@ -164,15 +174,15 @@ end
 
 function AdjacencyMatrix:print()
     --- Prints the matrix out nicely
-    spacer = "  "
-    col_header_format = "     "
+    local spacer = "  "
+    local col_header_format = "     "
     for i = 1, AdjacencyMatrix.size do
         col_header_format = col_header_format..i..spacer
     end
     print(col_header_format)
 
     for row in pairs(self.__adjacency_matrix) do
-        row_format = spacer
+        local row_format = spacer
         row_format = row_format..row..spacer
         for _, value in ipairs(self.__adjacency_matrix[row]) do
             row_format = row_format..value..spacer
