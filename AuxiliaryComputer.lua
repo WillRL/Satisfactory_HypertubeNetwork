@@ -87,6 +87,7 @@ function run(vertex, connections, name)
         elseif name == button_left then
             NetworkCard:broadcast(00000, "main", "button_left")
             print("Sending data: Button left")
+            print("TESTING UPDATE BUTTON")
 
         elseif name == button_right then
             NetworkCard:broadcast(00000, "main", "button_right")
