@@ -16,13 +16,13 @@ function init(vertex, connections, name, location, NetworkCard)
 end
 
 
-function run(vertex, connections, name)
+function run(vertex, connections, vertex_name)
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
     local sign
     local panel
     local location = NetworkCard.Location
 
-    if name ~= nil then
+    if vertex_name ~= nil then
         sign = component.proxy(component.findComponent("Sign")[1])
         panel = component.proxy(component.findComponent("Panel")[1])
         button_left = panel:getModule(4, 10)
@@ -55,14 +55,14 @@ function run(vertex, connections, name)
 
 
 
-    init(vertex, connections, name, location, NetworkCard)
+    init(vertex, connections, vertex_name, location, NetworkCard)
 
 
     while true do
         type, name, _, _, mode, data = event.pull()
         if mode == "reset" then
             print("Resetting Network")
-            init(vertex, connections, name, location, NetworkCard)
+            init(vertex, connections, vertex_name, location, NetworkCard)
 
         elseif mode == "new_path" then
             prev, after = extract_edges(data)
@@ -87,13 +87,12 @@ function run(vertex, connections, name)
         elseif name == button_left then
             NetworkCard:broadcast(00000, "main", "button_left")
             print("Sending data: Button left")
-            print("TESTING UPDATE BUTTON")
 
         elseif name == button_right then
             NetworkCard:broadcast(00000, "main", "button_right")
             print("Sending data: Button Right")
 
-        elseif mode == "auxiliary" and name ~= nil then
+        elseif mode == "auxiliary" and vertex_name ~= nil then
             prefab = sign:getPrefabSignData()
             prefab:setTextElement("Name", data)
             sign:setPrefabSignData(prefab)
