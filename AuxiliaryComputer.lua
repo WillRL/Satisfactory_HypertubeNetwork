@@ -92,7 +92,7 @@ function run(vertex, connections, name)
             NetworkCard:broadcast(00000, "main", "button_right")
             print("Sending data: Button Right")
 
-        elseif mode == "auxiliary" then
+        elseif mode == "auxiliary" and name ~= nil then
             prefab = sign:getPrefabSignData()
             prefab:setTextElement("Name", data)
             sign:setPrefabSignData(prefab)
