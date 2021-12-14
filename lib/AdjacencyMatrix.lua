@@ -1,7 +1,7 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "14/12/2021 3:30pm"
+local UPDATED = "14/12/2021 4:22pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
@@ -93,19 +93,19 @@ function AdjacencyMatrix:check_exist(vert)
     return self.__adjacency_matrix[vert] ~= nil
 end
 
-function AdjacencyMatrix:euclidean_dist(vert1, vert2, debug)
+function AdjacencyMatrix:euclidean_dist(vert1, vert2)
     --- Calculates the euclidean distance between two vertices
     ---@param vert1 number: The first vertex
     ---@param vert2 number: The second vertex
     ---@return number: The euclidean distance
-    if debug then
+    if self.__debug then
         print(vert1)
         print(vert2)
     end
 
     vert1 = self.mapping[vert1]
     vert2 = self.mapping[vert2]
-    if debug then
+    if self.__debug then
         print(vert1)
         print(vert2)
     end
@@ -161,7 +161,7 @@ function AdjacencyMatrix:A_star(start, goal)
             if tentative_gScore < gScore[neighbour] then
                 previousNodes[neighbour] = current
                 gScore[neighbour] = tentative_gScore
-                fScore[neighbour] = tentative_gScore + AdjacencyMatrix:euclidean_dist(neighbour, goal, self.__debug)
+                fScore[neighbour] = tentative_gScore + AdjacencyMatrix:euclidean_dist(neighbour, goal)
                 if not openSet:contains(neighbour) then
                     openSet:Add(neighbour, fScore[neighbour])
                 end
