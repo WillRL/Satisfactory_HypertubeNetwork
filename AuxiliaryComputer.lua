@@ -27,10 +27,12 @@ function run(vertex, connections, vertex_name)
         panel = component.proxy(component.findComponent("Panel")[1])
         button_left = panel:getModule(4, 10)
         button_right = panel:getModule(6, 10)
+        generate_path = panel:getModule(5,5)
         button_left:setColor(0, 1, 0, 1)
         button_right:setColor(0, 1, 0, 1)
         event.listen(button_left)
         event.listen(button_right)
+        event.listen(generate_path)
     end
 
     NetworkCard:open(00000)
@@ -91,6 +93,10 @@ function run(vertex, connections, vertex_name)
         elseif name == button_right then
             NetworkCard:broadcast(00000, "main", "button_right")
             print("Sending data: Button Right")
+
+        elseif name == generate_path then
+            NetworkCard:broadcast(00000, "generate_path", vertex)
+            print("Sending request to generate path")
 
         elseif mode == "auxiliary" and vertex_name ~= nil then
             prefab = sign:getPrefabSignData()
