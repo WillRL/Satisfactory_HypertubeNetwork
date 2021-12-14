@@ -86,6 +86,12 @@ function run(vertex, connections, vertex_name)
         elseif mode == "new_path" then
             local prev, after = extract_edges(data, vertex)
             local switch
+
+            for i=1, #connections do
+                switch = component.proxy(component.findComponent(tostring(connections[i]))[1])
+                switch.isSwitchOn = false
+            end
+
             if prev ~= nil or after ~= nil then
                 if prev ~= nil then
                     print(prev, after)
@@ -94,12 +100,6 @@ function run(vertex, connections, vertex_name)
                 elseif after ~= nil then
                     switch = component.proxy(component.findComponent(tostring(after))[1])
                     switch.isSwitchOn = true
-                end
-
-            else
-                for i=1, #connections do
-                    switch = component.proxy(component.findComponent(tostring(connections[i]))[1])
-                    switch.isSwitchOn = false
                 end
             end
 
