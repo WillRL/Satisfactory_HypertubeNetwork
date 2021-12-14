@@ -5,7 +5,7 @@
 ---
 
 
-function init(vertex, connections, name, location)
+function init(vertex, connections, name, location, NetworkCard)
     for i=1, #connections do
         NetworkCard:broadcast(00000, "connect", vertex, connections[i])
     end
@@ -55,14 +55,14 @@ function run(vertex, connections, name)
 
 
 
-    init(vertex, connections, name, location)
+    init(vertex, connections, name, location, NetworkCard)
 
 
     while true do
         type, name, _, _, mode, data = event.pull()
         if mode == "reset" then
             print("Resetting Network")
-            init(vertex, connections, name, location)
+            init(vertex, connections, name, location, NetworkCard)
 
         elseif mode == "new_path" then
             prev, after = extract_edges(data)
