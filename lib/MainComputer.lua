@@ -2,7 +2,7 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "14/12/2021 3:41pm"
+local UPDATED = "14/12/2021 3:42pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
@@ -50,7 +50,7 @@ function run()
         elseif mode == "assign_name" then
             hyper_network_names[data1] = data2
             hyper_network_dest_vertices[#hyper_network_dest_vertices + 1] = data1
-            print("Assigning Name "..data1.. " with "..data2)
+            print("Assigning Name: "..data1.. " with "..data2)
 
 
         elseif name == reset_button then
