@@ -100,6 +100,7 @@ function run(vertex, connections, name)
 
         elseif mode == "update_software" then
             computer.reset()
+            print("Updating Software")
         end
     end
 end
