@@ -3,7 +3,7 @@
 --- DateTime: 14/12/2021 1:39 pm
 ---
 
-local UPDATED = "14/12/2021 3:30pm"
+local UPDATED = "14/12/2021 11:58pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
