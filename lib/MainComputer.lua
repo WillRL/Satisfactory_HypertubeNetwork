@@ -2,7 +2,8 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-
+local UPDATED = "14/12/2021 3:30pm"
+print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
 

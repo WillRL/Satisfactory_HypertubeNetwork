@@ -1,10 +1,14 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
+local UPDATED = "14/12/2021 3:30pm"
+print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
 
 AdjacencyMatrix = {size}
+
+
 
 local min_comparator = function(a, b)
     return b < a

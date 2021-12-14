@@ -3,6 +3,8 @@
 --- DateTime: 14/12/2021 1:39 pm
 ---
 
+local UPDATED = "14/12/2021 3:30pm"
+print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
     --- Initial function to initialise.
@@ -11,6 +13,7 @@ local function init(vertex, connections, name, NetworkCard)
     ---@param name string: The name of this vertex
     ---@param location table: x,y,z coordinates
     ---
+
     local location = NetworkCard.Location
     for i=1, #connections do
         NetworkCard:broadcast(00000, "connect", vertex, connections[i])
