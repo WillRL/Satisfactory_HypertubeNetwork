@@ -6,7 +6,7 @@ print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
 
-AdjacencyMatrix = {size}
+AdjacencyMatrix = {size, __debug}
 
 
 
@@ -98,6 +98,7 @@ function AdjacencyMatrix:euclidean_dist(vert1, vert2)
     ---@param vert1 number: The first vertex
     ---@param vert2 number: The second vertex
     ---@return number: The euclidean distance
+    ---
     print(self.__debug)
     if self.__debug then
         print(vert1)
