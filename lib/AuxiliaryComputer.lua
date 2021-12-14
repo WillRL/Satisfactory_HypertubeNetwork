@@ -97,7 +97,9 @@ function run(vertex, connections, vertex_name)
                     print(prev, after)
                     switch = component.proxy(component.findComponent(tostring(prev))[1])
                     switch.isSwitchOn = true
-                elseif after ~= nil then
+                end
+
+                if after ~= nil then
                     switch = component.proxy(component.findComponent(tostring(after))[1])
                     switch.isSwitchOn = true
                 end
