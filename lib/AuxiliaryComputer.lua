@@ -4,7 +4,14 @@
 ---
 
 
-function init(vertex, connections, name, location, NetworkCard)
+local function init(vertex, connections, name, NetworkCard)
+    --- Initial function to initialise.
+    ---@param vertex number: The vertex this aux computer represents
+    ---@param connections table: Table of connections this vertex connects to
+    ---@param name string: The name of this vertex
+    ---@param location table: x,y,z coordinates
+    ---
+    local location = NetworkCard.Location
     for i=1, #connections do
         NetworkCard:broadcast(00000, "connect", vertex, connections[i])
     end
@@ -14,12 +21,39 @@ function init(vertex, connections, name, location, NetworkCard)
     end
 end
 
+local function extract_edges(path, vertex)
+    --- Extracts edges from a CSV
+    ---@param path string: The CSV formatted path string
+    ---
+    local counter = 0
+    local index = 0
+    local arr = {}
+    for k in string.gmatch(path, '([^,]+)') do
+        counter = counter + 1
+
+        if tonumber(k) == vertex then
+            index = counter
+        end
+        arr[counter] = k
+    end
+    if index ~= 0 then
+        return arr[index-1], arr[index+1]
+    end
+end
+
 
 function run(vertex, connections, vertex_name)
+    --- Initial function to initialise.
+    ---@param vertex number: The vertex this aux computer represents
+    ---@param connections table: Table of connections this vertex connects to
+    ---@param vertex_name string: The name of this vertex
+    ---
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
     local sign
     local panel
-    local location = NetworkCard.Location
+    local button_left
+    local button_right
+    local generate_path
 
     if vertex_name ~= nil then
         sign = component.proxy(component.findComponent("Sign")[1])
@@ -37,37 +71,18 @@ function run(vertex, connections, vertex_name)
     NetworkCard:open(00000)
     event.listen(NetworkCard)
 
-    function extract_edges(path)
-        counter = 0
-        index = 0
-        arr = {}
-        for k in string.gmatch(path, '([^,]+)') do
-            counter = counter + 1
-
-            if tonumber(k) == vertex then
-                index = counter
-            end
-            arr[counter] = k
-        end
-        if index ~= 0 then
-            return arr[index-1], arr[index+1]
-        end
-    end
-
-
-
-    init(vertex, connections, vertex_name, location, NetworkCard)
+    init(vertex, connections, vertex_name, NetworkCard)
 
 
     while true do
-        type, name, _, _, mode, data = event.pull()
+        local _, name, _, _, mode, data = event.pull()
         if mode == "reset" then
             print("Resetting Network")
-            init(vertex, connections, vertex_name, location, NetworkCard)
+            init(vertex, connections, vertex_name, NetworkCard)
 
         elseif mode == "new_path" then
-            prev, after = extract_edges(data)
-
+            local prev, after = extract_edges(data, vertex)
+            local switch
             if prev ~= nil or after ~= nil then
                 if prev ~= nil then
                     switch = component.proxy(component.findComponent(tostring(prev))[1])
@@ -98,7 +113,7 @@ function run(vertex, connections, vertex_name)
             print("Sending request to generate path")
 
         elseif mode == "auxiliary" and vertex_name ~= nil then
-            prefab = sign:getPrefabSignData()
+            local prefab = sign:getPrefabSignData()
             prefab:setTextElement("Name", data)
             sign:setPrefabSignData(prefab)
             print("Receiving data for new destination: "..data)

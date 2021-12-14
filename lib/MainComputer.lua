@@ -7,26 +7,30 @@
 filesystem.doFile("AdjacencyMatrix.lua")
 
 function run()
+    --- Main function to run the loop.
+    ---
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
+
+    local panel = component.proxy(component.findComponent("Panel")[1])
+    local reset_button = panel:getModule(0,0)
+    local generate_path = panel:getModule(3,0)
+    local update_software = panel:getModule(9,9)
+
+    local hyper_network = AdjacencyMatrix:new(nil, 10)
+    local hyper_network_names = {}
+    local hyper_network_dest_vertices = {}
+    local current_entrance = 1
+
     NetworkCard:open(00000)
-
-    panel = component.proxy(component.findComponent("Panel")[1])
-    reset_button = panel:getModule(0,0)
-    generate_path = panel:getModule(3,0)
-    update_software = panel:getModule(9,9)
-
     event.listen(NetworkCard)
     event.listen(reset_button)
     event.listen(generate_path)
     event.listen(update_software)
     event.clear()
 
-    hyper_network = AdjacencyMatrix:new(nil, 10)
-    hyper_network_names = {}
-    hyper_network_dest_vertices = {}
-    current_entrance = 1
+
     while true do
-        type, name, _, _, mode, data1, data2, data3, data4 = event.pull()
+        local _, name, _, _, mode, data1, data2, data3, data4 = event.pull()
         if mode == "connect" then
             if data1 > hyper_network.size then
                 hyper_network:add_vertex()
@@ -58,10 +62,11 @@ function run()
 
 
         elseif mode == "generate_path" then
-            print("Genearting Path")
+            print("Generating Path")
             print(data1)
             print(hyper_network_dest_vertices[current_entrance])
-            path = hyper_network:generate_path(data1,hyper_network_dest_vertices[current_entrance])
+            local path = hyper_network:generate_path(data1,hyper_network_dest_vertices[current_entrance])
+            local path_string
             if #path ~= 0 then
                 path_string = path[1]
                 for i=2,#path do
@@ -94,7 +99,11 @@ function run()
 
 
         elseif name == update_software then
-            print("Updating all auxiliary computer softwares")
+            print("Updating all auxiliary computers software and resetting")
+            hyper_network = AdjacencyMatrix:new(nil, 10)
+            hyper_network_names = {}
+            hyper_network_dest_vertices = {}
+            current_entrance = 0
             NetworkCard:broadcast(00000, "update_software")
         end
 

@@ -16,9 +16,9 @@ fs.initFileSystem("/dev")
 fs.makeFileSystem("tmpfs", "tmp")
 fs.mount("/dev/"..disk_uuid,"/")
 
-local req1 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/AdjacencyMatrix.lua", "GET", "")
-local req2 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/PriorityQueue.lua", "GET", "")
-local req3 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/MainComputer.lua", "GET", "")
+local req1 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/AdjacencyMatrix.lua", "GET", "")
+local req2 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/PriorityQueue.lua", "GET", "")
+local req3 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/MainComputer.lua", "GET", "")
 
 local _, libdata1 = req1:await()
 local _, libdata2 = req2:await()

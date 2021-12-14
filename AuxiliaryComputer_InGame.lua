@@ -21,7 +21,7 @@ fs.initFileSystem("/dev")
 fs.makeFileSystem("tmpfs", "tmp")
 fs.mount("/dev/"..disk_uuid,"/")
 
-local req = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/AuxiliaryComputer.lua", "GET", "")
+local req = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/AuxiliaryComputer.lua", "GET", "")
 local _, libdata = req:await()
 
 local file = fs.open("AuxiliaryComputer.lua", "w")
