@@ -96,7 +96,10 @@ function run(vertex, connections, name)
             prefab = sign:getPrefabSignData()
             prefab:setTextElement("Name", data)
             sign:setPrefabSignData(prefab)
-            print("Recieving data for new destination: "..data)
+            print("Receiving data for new destination: "..data)
+
+        elseif mode == "update_software" then
+            computer.reset()
         end
     end
 end
