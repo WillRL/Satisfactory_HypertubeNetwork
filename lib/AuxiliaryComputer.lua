@@ -88,6 +88,7 @@ function run(vertex, connections, vertex_name)
             local switch
             if prev ~= nil or after ~= nil then
                 if prev ~= nil then
+                    print(prev, after)
                     switch = component.proxy(component.findComponent(tostring(prev))[1])
                     switch.isSwitchOn = true
                 elseif after ~= nil then
