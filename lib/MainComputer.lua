@@ -61,9 +61,8 @@ function run(size, debug)
 
 
         elseif mode == "generate_path" then
-            print("Generating Path")
-            print(data1)
-            print(hyper_network_dest_vertices[current_entrance])
+            print("Generating Path: "..data1 "to"..hyper_network_dest_vertices[current_entrance])
+
             local path = hyper_network:generate_path(data1,hyper_network_dest_vertices[current_entrance])
             local path_string
             if #path ~= 0 then
