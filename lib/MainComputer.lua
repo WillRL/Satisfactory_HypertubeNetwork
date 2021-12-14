@@ -14,7 +14,6 @@ function run(size, debug)
 
     local panel = component.proxy(component.findComponent("Panel")[1])
     local reset_button = panel:getModule(0,0)
-    local generate_path = panel:getModule(3,0)
     local update_software = panel:getModule(9,9)
 
     local hyper_network = AdjacencyMatrix:new(nil, size, debug)
@@ -25,7 +24,6 @@ function run(size, debug)
     NetworkCard:open(00000)
     event.listen(NetworkCard)
     event.listen(reset_button)
-    event.listen(generate_path)
     event.listen(update_software)
     event.clear()
 
@@ -101,7 +99,7 @@ function run(size, debug)
 
         elseif name == update_software then
             print("Updating all auxiliary computers software and resetting")
-            hyper_network = AdjacencyMatrix:new(nil, 10)
+            hyper_network = AdjacencyMatrix:new(nil, 10, debug)
             hyper_network_names = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0
