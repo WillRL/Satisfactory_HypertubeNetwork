@@ -50,7 +50,7 @@ function run()
         elseif mode == "assign_name" then
             hyper_network_names[data1] = data2
             hyper_network_dest_vertices[#hyper_network_dest_vertices + 1] = data1
-            print("Assigning vertex "..data1.." name: "..data2)
+            print("Assigning Name "..data1.. " with "..data2)
 
 
         elseif name == reset_button then
