@@ -93,10 +93,15 @@ function AdjacencyMatrix:euclidean_dist(vert1, vert2)
     ---@param vert1 number: The first vertex
     ---@param vert2 number: The second vertex
     ---@return number: The euclidean distance
+    print(vert1)
+    print(vert2)
+
 
     vert1 = self.mapping[vert1]
     vert2 = self.mapping[vert2]
-    return math.sqrt((vert1["x"] + vert2["x"])^2+(vert1["y"] + vert2["y"])+(vert1["z"] + vert2["z"]))
+    print(vert1)
+    print(vert2)
+    return math.sqrt((vert1["x"] + vert2["x"])^2+(vert1["y"] + vert2["y"])^2+(vert1["z"] + vert2["z"])^2)
 end
 
 function AdjacencyMatrix:generate_path(origin, target)
