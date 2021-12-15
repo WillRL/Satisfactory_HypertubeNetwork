@@ -92,6 +92,7 @@ function run(vertex, connections, vertex_name)
                 switches = component.findComponent(tostring(connections[i]))
                 for j=1, #switches do
                     switch = component.proxy(switches[j])
+                    print(connections[i], prev, after)
                     if connections[i] == prev or connections[i] == after then
                         switch.isSwitchOn = true
                     else
