@@ -1,6 +1,6 @@
 ---
 --- Created by Willis
---- DateTime: 14/12/2021 1:39 pm
+--- DateTime: 15/12/2021 11:35 pm
 ---
 
 local UPDATED = "14/12/2021 11:58pm"
@@ -25,8 +25,9 @@ local function init(vertex, connections, name, NetworkCard)
 end
 
 local function extract_edges(path, vertex)
-    --- Extracts edges from a CSV
+    --- Extracts edges from a CSV formatted string
     ---@param path string: The CSV formatted path string
+    ---@param vertex number: The vertex associated with this
     ---
     local counter = 0
     local index = 0
@@ -85,23 +86,17 @@ function run(vertex, connections, vertex_name)
 
         elseif mode == "new_path" then
             local prev, after = extract_edges(data, vertex)
-            local switch
+            local switches, switch
 
             for i=1, #connections do
-                switch = component.proxy(component.findComponent(tostring(connections[i]))[1])
-                switch.isSwitchOn = false
-            end
-
-            if prev ~= nil or after ~= nil then
-                if prev ~= nil then
-                    print(prev, after)
-                    switch = component.proxy(component.findComponent(tostring(prev))[1])
-                    switch.isSwitchOn = true
-                end
-
-                if after ~= nil then
-                    switch = component.proxy(component.findComponent(tostring(after))[1])
-                    switch.isSwitchOn = true
+                switches = component.findComponent(tostring(connections[i]))
+                for j=1, #switches do
+                    switch = switches[j]
+                    if connections[i] == prev or connections[i] == after then
+                        switch.isSwitchOn = true
+                    else
+                        switch.isSwitchOn = false
+                    end
                 end
             end
 
