@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "15/12/2021 12:20pm"
+local UPDATED = "16/12/2021 12:33am"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -87,17 +87,18 @@ function run(vertex, connections, vertex_name)
         elseif mode == "new_path" then
             local prev, after = extract_edges(data, vertex)
             local switches, switch
+            local switched = {}
 
             for i=1, #connections do
                 switches = component.findComponent(tostring(connections[i]))
                 print(connections[i], prev, after)
                 for j=1, #switches do
                     switch = component.proxy(switches[j])
-                    print(switches[j])
                     if connections[i] == tonumber(prev) or connections[i] == tonumber(after) then
-                        print("turning on:"..switches[j])
                         switch.isSwitchOn = true
-                    else
+                        switched[switches[j]] = true
+
+                    elseif switched[switches[j]] ~= nil then
                         switch.isSwitchOn = false
                     end
                 end
