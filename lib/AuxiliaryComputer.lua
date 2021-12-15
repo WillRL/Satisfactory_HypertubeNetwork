@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "15/12/2021 11:49pm"
+local UPDATED = "15/12/2021 12:14pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -90,7 +90,9 @@ function run(vertex, connections, vertex_name)
 
             for i=1, #connections do
                 switches = component.findComponent(tostring(connections[i]))
+                print(connections[i], prev, after)
                 for j=1, #switches do
+                    print(switch)
                     switch = component.proxy(switches[j])
                     if connections[i] == tonumber(prev) or connections[i] == tonumber(after) then
                         switch.isSwitchOn = true
