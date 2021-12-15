@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "16/12/2021 12:33am"
+local UPDATED = "16/12/2021 12:39am"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -98,7 +98,7 @@ function run(vertex, connections, vertex_name)
                         switch.isSwitchOn = true
                         switched[switches[j]] = true
 
-                    elseif switched[switches[j]] ~= nil then
+                    elseif switched[switches[j]] == nil then
                         switch.isSwitchOn = false
                     end
                 end
