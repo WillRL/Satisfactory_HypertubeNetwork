@@ -3,37 +3,38 @@
 --- Class to represent Buttons
 
 
-local UPDATED = "16/12/2021 9:40pm"
+
+local UPDATED = "16/12/2021 10:53pm"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
+
+filesystem.doFile("Boundary.lua")
 
 Button = {}
 Button.__index = Button
 setmetatable(Button, {__call = function(cls,...) return cls.new(...) end,})
 
-function Button.new(label, xMax, xMin, yMax, yMin, colourInit, func)
+
+function Button.new(label, xMin, xMax, yMin, yMax, colourInit, func)
     local self = setmetatable({}, Button)
 
     self.label = label
-
-    self.xMax = xMax
-    self.yMax = yMax
-    self.xMin = xMin
-    self.yMin = yMin
-
-    self.dX = xMax - xMin
-    self.dY = yMax - yMin
-
     self.colourInit = colourInit
     self.func = func
+
+    self.boundary = Boundary(xMin, xMax, yMin, yMax)
     return self
 end
 
-function Button:draw(gpu)
-    gpu:setBackground(self.colourInit[1], self.colourInit[2], self.colourInit[3], self.colourInit[4])
-    gpu:fill(self.xMin, self.yMin, self.dX, self.dY, " ")
 
-    local midX = math.ceil( (self.xMax - self.xMin-1)/2) + self.xMin
-    local midY = math.floor((self.yMax - self.yMin-1)/2) + self.yMin
+function Button:draw(gpu)
+    local min_max = self.boundary.get_min_max()
+
+
+    gpu:setBackground(self.colourInit[1], self.colourInit[2], self.colourInit[3], self.colourInit[4])
+    gpu:fill(min_max.xMin, min_max.yMin, min_max.dX, min_max.dY, " ")
+
+    local midX = math.ceil( (min_max.xMax - min_max.xMin-1)/2) + min_max.xMin
+    local midY = math.floor((min_max.yMax - min_max.yMin-1)/2) + min_max.yMin
 
     local label_len = string.len(self.label)
     local label_mid = math.ceil(label_len/2)
@@ -42,21 +43,22 @@ function Button:draw(gpu)
     gpu:setText(label_start, midY, self.label)
 end
 
-function Button:check(x,y)
-    if(x >= self.xMin and x <= (self.xMax - 1)) and (y >= self.yMin and y <= (self.yMax - 1)) then
-        return true
-    else
-        return false
-    end
+
+function Button:get_min_max()
+    return self.boundary:get_min_max()
 end
 
 
 function Button:click(x,y)
-    print(self:check(x,y))
-    if(self:check(x,y)) then
+    if(self.boundary:check(x,y)) then
         self.func(self)
         return true
     end
     return false
+end
+
+
+function Button:move(dX, dY)
+    self.boundary:move(dX, dY)
 end
 
