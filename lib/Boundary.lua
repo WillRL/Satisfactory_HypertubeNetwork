@@ -4,7 +4,7 @@
 --- Class to represent a boundary.
 ---
 
-local UPDATED = "16/12/2021 10:53pm"
+local UPDATED = "16/12/2021 11:20pm"
 print("Initialising Boundary.lua\nLast Update: "..UPDATED)
 
 Boundary = {}
