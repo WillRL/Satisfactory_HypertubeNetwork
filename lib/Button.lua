@@ -4,7 +4,7 @@
 
 
 
-local UPDATED = "17/12/2021 12:24am"
+local UPDATED = "17/12/2021 12:26am"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
@@ -57,12 +57,14 @@ function Button:get_min_max()
 end
 
 
-function Button:execute(x,y, func)
+function Button:execute(x,y, func1, func2)
     if(self.boundary:check(x,y, -1, -1)) then
-        func(self)
+        func1(self)
         return true
+    else
+        func2(self)
+        return false
     end
-    return false
 end
 
 
