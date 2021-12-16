@@ -4,10 +4,11 @@
 ---
 ---
 
-local UPDATED = "16/12/2021 10:53pm"
+local UPDATED = "16/12/2021 11:07pm"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
+filesystem.doFile("Button.lua")
 
 PageScroller = {}
 PageScroller.__index = PageScroller
@@ -21,6 +22,11 @@ function PageScroller.new(xMin, xMax, yMin, yMax)
     self.buttons = {}
 
     return self
+end
+
+function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourInit, func)
+    local new_button = Button(label, xMin, xMax, yMin, yMax, colourInit, func)
+    table.insert(self.buttons, new_button)
 end
 
 function PageScroller:scroll(dX, dY)
