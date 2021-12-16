@@ -23,14 +23,14 @@ function PageScroller.new(xMin, xMax, yMin, yMax)
     return self
 end
 
-function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourBack, colourFore)
-    local new_button = Button(label, xMin, xMax, yMin, yMax, colourBack, colourFore)
+function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourBack, colourFore, secondary_colour)
+    local new_button = Button(label, xMin, xMax, yMin, yMax, colourBack, colourFore, secondary_colour)
     table.insert(self.buttons, new_button)
 end
 
-function PageScroller:add_button_sequential(label, dX, dY, colourBack, colourFore)
+function PageScroller:add_button_sequential(label, dX, dY, colourBack, colourFore, secondary_colour)
     local min_max = self.buttons[#self.buttons]:get_min_max()
-    local new_button = Button(label, min_max.xMin + dX, min_max.xMax + dX, min_max.yMin + dY, min_max.yMax + dY, colourBack, colourFore)
+    local new_button = Button(label, min_max.xMin + dX, min_max.xMax + dX, min_max.yMin + dY, min_max.yMax + dY, colourBack, colourFore, secondary_colour)
     table.insert(self.buttons, new_button)
 end
 
