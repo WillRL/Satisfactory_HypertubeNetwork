@@ -23,8 +23,8 @@ function PageScroller.new(xMin, xMax, yMin, yMax)
     return self
 end
 
-function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourInit, func)
-    local new_button = Button(label, xMin, xMax, yMin, yMax, colourInit, func)
+function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourInit)
+    local new_button = Button(label, xMin, xMax, yMin, yMax, colourInit)
     table.insert(self.buttons, new_button)
 end
 
