@@ -4,7 +4,7 @@
 --- Class to represent a boundary.
 ---
 
-local UPDATED = "17/12/2021 12:05pm"
+local UPDATED = "17/12/2021 12:05am"
 print("Initialising Boundary.lua\nLast Update: "..UPDATED)
 
 Boundary = {}
@@ -33,8 +33,10 @@ function Boundary:move(dX, dY)
     self.yMin = self.yMin + dY
 end
 
-function Boundary:check(x,y)
-    if(x >= self.xMin and x <= (self.xMax - 1)) and (y >= self.yMin and y <= (self.yMax - 1)) then
+function Boundary:check(x,y, offsetX, offsetY)
+    offsetX = offsetX or 0
+    offsetY = offsetY or 0
+    if(x >= self.xMin and x <= (self.xMax + offsetX)) and (y >= self.yMin and y <= (self.yMax + offsetY)) then
         return true
     else
         return false

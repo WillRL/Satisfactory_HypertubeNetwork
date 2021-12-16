@@ -4,7 +4,7 @@
 
 
 
-local UPDATED = "16/12/2021 10:53pm"
+local UPDATED = "17/12/2021 12:15am"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
@@ -50,7 +50,7 @@ end
 
 
 function Button:click(x,y)
-    if(self.boundary:check(x,y)) then
+    if(self.boundary:check(x,y, -1, -1)) then
         self.func(self)
         return true
     end
