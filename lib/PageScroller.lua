@@ -39,16 +39,16 @@ function PageScroller:scroll(dX, dY)
     dX = dX or 0
     dY = dY or 0
 
-    if self.check(self.buttons[1]) then
+    if self:check(self.buttons[1]) then
         dX = 0
     end
 
-    if self.check(self.buttons[#self.buttons]) then
+    if self:check(self.buttons[#self.buttons]) then
         dY = 0
     end
 
     for i=1, #self.buttons do
-        self.buttons[i].move(dX, dY)
+        self.buttons[i]:move(dX, dY)
     end
 end
 
