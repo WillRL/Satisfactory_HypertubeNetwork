@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 12:55am"
+local UPDATED = "17/12/2021 12:57am"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -75,11 +75,7 @@ end
 
 function PageScroller:check(button)
     local min_max = button:get_min_max()
-    if self.boundary:check(min_max.xMin, min_max.yMin) and self.boundary:check(min_max.xMax, min_max.yMax) then
-        return true
-    else
-        return false
-    end
+    return self.boundary:check(min_max.xMin, min_max.yMin) and self.boundary:check(min_max.xMax, min_max.yMax)
 end
 
 
