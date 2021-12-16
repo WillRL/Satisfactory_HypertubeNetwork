@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 12:44am"
+local UPDATED = "17/12/2021 12:47am"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -28,9 +28,9 @@ function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourInit)
     table.insert(self.buttons, new_button)
 end
 
-function PageScroller:add_button_sequential(label, dX, dY, colourInit, func)
+function PageScroller:add_button_sequential(label, dX, dY, colourInit)
     local min_max = self.buttons[#self.buttons]:get_min_max()
-    local new_button = Button(label, min_max.xMin + dX, min_max.xMax + dX, min_max.yMin + dY, min_max.yMax + dY, colourInit, func)
+    local new_button = Button(label, min_max.xMin + dX, min_max.xMax + dX, min_max.yMin + dY, min_max.yMax + dY, colourInit)
     table.insert(self.buttons, new_button)
 end
 
@@ -86,12 +86,6 @@ function PageScroller:execute(x,y, func)
     local button
     for i=1, #self.buttons do
         button = self.buttons[i]
-        if(button:check(x,y, -1, -1)) then
-            func(self, true)
-            return true
-        else
-            func(self, false)
-            return false
-        end
+        button:execute(x, y, func)
     end
 end
