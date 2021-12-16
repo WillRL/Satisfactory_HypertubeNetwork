@@ -2,7 +2,7 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "14/12/2021 3:42pm"
+local UPDATED = "16/12/2021 3:50pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
@@ -16,7 +16,7 @@ function run(size, debug)
     local reset_button = panel:getModule(0,0)
     local update_software = panel:getModule(9,9)
 
-    local hyper_network = AdjacencyMatrix:new(nil, size, debug)
+    local hyper_network = AdjacencyMatrix.new(size, debug)
     local hyper_network_names = {}
     local hyper_network_dest_vertices = {}
     local current_entrance = 1
@@ -52,7 +52,7 @@ function run(size, debug)
 
 
         elseif name == reset_button then
-            hyper_network = AdjacencyMatrix:new(nil, 10)
+            hyper_network = AdjacencyMatrix.new(10, debug)
             hyper_network_names = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0
@@ -98,7 +98,7 @@ function run(size, debug)
 
         elseif name == update_software then
             print("Updating all auxiliary computers software and resetting")
-            hyper_network = AdjacencyMatrix:new(nil, 10, debug)
+            hyper_network = AdjacencyMatrix.new(10, debug)
             hyper_network_names = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0

@@ -1,24 +1,24 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "14/12/2021 4:22pm"
+local UPDATED = "16/12/2021 3:49pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
 
 AdjacencyMatrix = {size, __debug}
-
+AdjacencyMatrix.__index = AdjacencyMatrix
+setmetatable(AdjacencyMatrix, {__call = function(cls,...) return cls.new(...) end,})
 
 
 local min_comparator = function(a, b)
     return b < a
 end
 
-function AdjacencyMatrix:new(o, n, debug)
+function AdjacencyMatrix.new(n, debug)
     --- Constructor for Adjacency matrix
     ---@param n number: The size (n by n) of the matrix
-    o = {} or o
-    setmetatable(o, self)
+    local self = setmetatable({}, AdjacencyMatrix)
     self.__index = self
     self.size = n
     self.mapping = {}
