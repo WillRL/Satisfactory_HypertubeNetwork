@@ -69,7 +69,6 @@ function Button:execute(x,y, func)
 end
 
 
-
 function Button:move(dX, dY)
     self.boundary:move(dX, dY)
 end
