@@ -4,10 +4,9 @@
 ---
 ---
 
-local UPDATED = "16/12/2021 11:38pm"
+local UPDATED = "16/12/2021 11:41pm"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
-filesystem.doFile("Boundary.lua")
 filesystem.doFile("Button.lua")
 
 PageScroller = {}
