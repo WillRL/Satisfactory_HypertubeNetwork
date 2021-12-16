@@ -59,8 +59,6 @@ function PageScroller:scroll(mode ,dX, dY)
         end
     end
     for i=1, #self.buttons do
-        print("Moving button")
-        print(dX, dY)
         self.buttons[i]:move(dX, dY)
     end
 end

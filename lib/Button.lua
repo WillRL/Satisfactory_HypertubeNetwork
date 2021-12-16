@@ -4,7 +4,7 @@
 
 
 
-local UPDATED = "17/12/2021 12:51am"
+local UPDATED = "17/12/2021 1:12am"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
@@ -14,14 +14,24 @@ Button.__index = Button
 setmetatable(Button, {__call = function(cls,...) return cls.new(...) end,})
 
 
-function Button.new(label, xMin, xMax, yMin, yMax, colourInit)
+function Button.new(label, xMin, xMax, yMin, yMax, colourBack, colourFore)
     local self = setmetatable({}, Button)
 
     self.label = label
-    self.colourInit = colourInit
+    self.colourBack = colourBack
+    self.colourFore = colourFore
 
     self.boundary = Boundary(xMin, xMax, yMin, yMax)
     return self
+end
+
+
+function Button:setBackground(rgba)
+    self.colourBack = rgba
+end
+
+function Button:setForeground(rgba)
+    self.colourFore = rgba
 end
 
 
