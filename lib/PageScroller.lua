@@ -41,10 +41,12 @@ function PageScroller:scroll(mode ,dX, dY)
 
     if mode == "vertical" then
         if self:check(self.buttons[1]) and dY > 0 then
+            print("Cant scroll in positive DY")
             dY = 0
         end
 
         if self:check(self.buttons[#self.buttons]) and dY < 0 then
+            print("Cant scroll in negative DY")
             dY = 0
         end
     elseif mode == "horizontal" then
