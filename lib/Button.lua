@@ -28,7 +28,6 @@ end
 function Button:draw(gpu)
     local min_max = self.boundary:get_min_max()
 
-
     gpu:setBackground(self.colourInit[1], self.colourInit[2], self.colourInit[3], self.colourInit[4])
     gpu:fill(min_max.xMin, min_max.yMin, min_max.dX, min_max.dY, " ")
 
@@ -41,6 +40,7 @@ function Button:draw(gpu)
 
     gpu:setText(label_start, midY, self.label)
 end
+
 
 function Button:setBackground(rgba)
     gpu:setBackground(rgba[1], rgba[2], rgba[3], rgba[4])
