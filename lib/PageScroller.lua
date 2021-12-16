@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "16/12/2021 11:25pm"
+local UPDATED = "16/12/2021 11:28pm"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
@@ -31,7 +31,7 @@ end
 
 function PageScroller:add_button_sequential(label, dX, dY, colourInit, func)
     local min_max = self.buttons[#self.buttons]:get_min_max()
-    local new_button = Button(label, min_max.xMin + dX, min_max.dX, min_max.yMin + dY, min_max.yMax + dY, colourInit, func)
+    local new_button = Button(label, min_max.xMin + dX, min_max.xMax + dX, min_max.yMin + dY, min_max.yMax + dY, colourInit, func)
     table.insert(self.buttons, new_button)
 end
 
