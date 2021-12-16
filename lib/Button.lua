@@ -38,7 +38,8 @@ end
 function Button:draw(gpu)
     local min_max = self.boundary:get_min_max()
 
-    gpu:setBackground(self.colourInit[1], self.colourInit[2], self.colourInit[3], self.colourInit[4])
+    gpu:setBackground(self.colourBack[1], self.colourBack[2], self.colourBack[3], self.colourBack[4])
+    gpu:setForeground(self.colourFore[1], self.colourFore[2], self.colourFore[3], self.colourFore[4])
     gpu:fill(min_max.xMin, min_max.yMin, min_max.dX, min_max.dY, " ")
 
     local midX = math.ceil( (min_max.xMax - min_max.xMin-1)/2) + min_max.xMin
