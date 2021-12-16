@@ -29,6 +29,12 @@ function PageScroller:add_button(label, xMin, xMax, yMin, yMax, colourInit, func
     table.insert(self.buttons, new_button)
 end
 
+function PageScroller:add_button_sequential(dX, dY, colourInit, func)
+    local min_max = self.buttons[#self.buttons]
+    local new_button = Button(label, min_max.xMin + dX, min_max.dX, min_max.yMin + dY, min_max.yMax + dY, colourInit, func)
+    table.insert(self.buttons, new_button)
+end
+
 function PageScroller:scroll(dX, dY)
     dX = dX or 0
     dY = dY or 0
