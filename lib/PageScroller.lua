@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 12:36pm"
+local UPDATED = "17/12/2021 12:44am"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -41,6 +41,7 @@ function PageScroller:scroll(mode ,dX, dY)
 
     if mode == "vertical" then
         if self:check(self.buttons[1]) and dY > 0 then
+            print("Unable to scroll")
             dY = 0
         end
 
