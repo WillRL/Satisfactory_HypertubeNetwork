@@ -3,15 +3,12 @@
 --- Class to represent Buttons
 
 
-local UPDATED = "16/12/2021 3:46pm"
+local UPDATED = "16/12/2021 9:40pm"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
 Button = {}
 Button.__index = Button
 setmetatable(Button, {__call = function(cls,...) return cls.new(...) end,})
-
-
-
 
 function Button.new(label, xMax, xMin, yMax, yMin, colourInit, func)
     local self = setmetatable({}, Button)
@@ -55,6 +52,7 @@ end
 
 
 function Button:click(x,y)
+    print(self:check(x,y))
     if(self:check(x,y)) then
         self.func(self)
         return true
