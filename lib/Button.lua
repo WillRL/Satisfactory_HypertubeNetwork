@@ -3,10 +3,10 @@
 --- Class to represent Buttons
 
 
-local UPDATED = "16/12/2021 3:38pm"
+local UPDATED = "16/12/2021 3:46pm"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
-local Button = {}
+Button = {}
 Button.__index = Button
 setmetatable(Button, {__call = function(cls,...) return cls.new(...) end,})
 
@@ -32,7 +32,7 @@ function Button.new(label, xMax, xMin, yMax, yMin, colourInit, func)
 end
 
 function Button:draw(gpu)
-    gpu:setBackground(self.colourInit)
+    gpu:setBackground(self.colourInit[1], self.colourInit[2], self.colourInit[3], self.colourInit[4])
     gpu:fill(self.xMin, self.yMin, self.dX, self.dY, " ")
 
     local midX = math.ceil( (self.xMax - self.xMin-1)/2) + self.xMin
