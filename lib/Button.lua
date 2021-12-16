@@ -45,3 +45,20 @@ function Button:draw(gpu)
     gpu:setText(label_start, midY, self.label)
 end
 
+function Button:check(x,y)
+    if(x >= self.xMin and x <= (self.xMax - 1)) and (y >= self.yMin and y <= (self.yMax - 1)) then
+        return true
+    else
+        return false
+    end
+end
+
+
+function Button:click(x,y)
+    if(self:check(x,y)) then
+        self.func(self)
+        return true
+    end
+    return false
+end
+
