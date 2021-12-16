@@ -34,7 +34,7 @@ function Boundary:move(dX, dY)
 end
 
 function Boundary:check(x,y)
-    if(x >= self.xMin and x <= (self.xMax - 1)) and (y >= self.yMin and y <= (self.yMax - 1)) then
+    if(x >= self.xMin and x <= (self.xMax)) and (y >= self.yMin and y <= (self.yMax - 1)) then
         return true
     else
         return false
