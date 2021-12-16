@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 12:57am"
+local UPDATED = "17/12/2021 1:00am"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -59,7 +59,9 @@ function PageScroller:scroll(mode ,dX, dY)
         end
     end
     for i=1, #self.buttons do
-    self.buttons[i]:move(dX, dY)
+        print("Moving button")
+        print(dX, dY)
+        self.buttons[i]:move(dX, dY)
     end
 end
 
