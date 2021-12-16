@@ -4,7 +4,7 @@
 
 
 
-local UPDATED = "17/12/2021 12:27am"
+local UPDATED = "17/12/2021 12:51am"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
@@ -39,16 +39,6 @@ function Button:draw(gpu)
     local label_start = midX-label_len+label_mid
 
     gpu:setText(label_start, midY, self.label)
-end
-
-
-function Button:setBackground(rgba)
-    gpu:setBackground(rgba[1], rgba[2], rgba[3], rgba[4])
-end
-
-
-function Button:setForeground(rgba)
-    gpu:setForeground(rgba[1], rgba[2], rgba[3], rgba[4])
 end
 
 
