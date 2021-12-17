@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "17/12/2021 8:16am"
+local UPDATED = "17/12/2021 8:19pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -64,13 +64,13 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
     local down_button = Button("  ↓", panel_x_mid - w / 10, panel_x_mid + w / 10 + 1, h - 4, h - 3, { 0, 0.2, 0, 1 }, { 1, 1, 1, 1 })
 
     local current_dest_label = Button("Current Location", panel_width + 2, w - 3, 3, 4, { 0.05, 0.05, 0.5, 1 }, { 1, 1, 1, 1 })
-    local current_dest_text = Button(NAME, panel_width + 2, w - 3, 4, 5, { 0, 0, 0, 1 }, { 1, 1, 1, 1 })
+    local current_dest_text = Button(vertex_name, panel_width + 2, w - 3, 4, 5, { 0, 0, 0, 1 }, { 1, 1, 1, 1 })
 
     local routing_info_label = Button("Route Info", panel_width + 2, w - 3, 6, 7, { 0.05, 0.05, 0.5, 1 }, { 1, 1, 1, 1 })
     local routing_from_label = Button("From", panel_width + 2, w - 3, 7, 8, { 0, 0, 0, 1 }, { 1, 0.6, 0.2, 1 })
     local routing_to_label = Button("To", panel_width + 2, w - 3, 9, 10, { 0, 0, 0, 1 }, { 1, 0.6, 0.2, 1 })
 
-    local routing_from_text = Button(NAME, panel_width + 2, w - 3, 8, 9, { 0, 0, 0, 1 }, { 1, 1, 1, 1 })
+    local routing_from_text = Button(vertex_name, panel_width + 2, w - 3, 8, 9, { 0, 0, 0, 1 }, { 1, 1, 1, 1 })
     local routing_to_text = Button("", panel_width + 2, w - 3, 10, 11, { 0, 0, 0, 1 }, { 1, 1, 1, 1 })
 
     local route_button = Button("Compute Route", panel_width + 2, w - 3, 12, 15, { 0, 0.25, 0, 1 }, { 1, 1, 1, 1 })
