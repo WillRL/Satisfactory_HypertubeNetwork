@@ -1,7 +1,7 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "16/12/2021 3:49pm"
+local UPDATED = "17/12/2021 8:58m"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
@@ -33,7 +33,7 @@ function AdjacencyMatrix.new(n, debug)
     end
 
     self.__adjacency_matrix = matrix
-    return o
+    return self
 end
 
 function AdjacencyMatrix:add_vertex()
@@ -192,7 +192,3 @@ function AdjacencyMatrix:print()
         print(row_format)
     end
 end
-
-
-
-
