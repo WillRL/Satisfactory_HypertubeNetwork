@@ -2,7 +2,7 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "17/12/2021 9:55pm"
+local UPDATED = "17/12/2021 10:12pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
@@ -52,6 +52,10 @@ function run(size, debug, aux_screen)
                 print("Aux screen")
                 hyper_network_name_vertex[data2] = data1
                 NetworkCard:broadcast(00000, "auxiliary", data2)
+                print("Name to vertex")
+                for i,k in ipairs(hyper_network_name_vertex) do
+                    print(i,k)
+                end
             end
 
             hyper_network_dest_vertices[#hyper_network_dest_vertices + 1] = data1
