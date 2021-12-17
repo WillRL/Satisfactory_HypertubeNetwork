@@ -1,7 +1,7 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "17/12/2021 9:07pm"
+local UPDATED = "17/12/2021 9:23pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
@@ -178,7 +178,7 @@ function AdjacencyMatrix:print()
     --- Prints the matrix out nicely
     local spacer = "  "
     local col_header_format = "     "
-    for i = 1, AdjacencyMatrix.size do
+    for i = 1, #self.__adjacency_matrix do
         col_header_format = col_header_format..i..spacer
     end
     print(col_header_format)
