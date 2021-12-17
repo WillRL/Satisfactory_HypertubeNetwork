@@ -1,7 +1,7 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "17/12/2021 9:23pm"
+local UPDATED = "17/12/2021 9:25pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
@@ -19,7 +19,6 @@ function AdjacencyMatrix.new(n, debug)
     --- Constructor for Adjacency matrix
     ---@param n number: The size (n by n) of the matrix
     local self = setmetatable({}, AdjacencyMatrix)
-    self.__index = self
     self.size = n
     self.mapping = {}
     self.__debug = debug
