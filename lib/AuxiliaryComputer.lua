@@ -47,6 +47,8 @@ end
 
 function run_with_screen(vertex, connections, vertex_name, screen, gpu)
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
+    NetworkCard:open(00000)
+    event.listen(NetworkCard)
     init(vertex, connections, vertex_name, NetworkCard)
 
     local w, h = screen:getSize()
@@ -151,7 +153,7 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
 
     refresh()
     gpu:flush()
-    page:add_button("New Destination", 5, panel_width - 1, 4, 5, button_back, { 1, 1, 1, 1 })
+    --page:add_button("New Destination", 5, panel_width - 1, 4, 5, button_back, { 1, 1, 1, 1 })
     while true do
         local e, _, x, y, mode, data = event.pull()
         if e == "OnMouseDown" then
