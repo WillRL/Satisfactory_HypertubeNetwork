@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 11:21am"
+local UPDATED = "17/12/2021 5:40pm"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -82,7 +82,7 @@ end
 function PageScroller:execute(x,y, func, ignore_boundary)
     ignore_boundary = false or ignore_boundary
     for i=1, #self.buttons do
-        if ignore_boundary or self:check(self.buttons[i]) and self.boundary:check(x,y, 0, -1) then
+        if ignore_boundary or self.boundary:check(x,y, 0, -1) then
             self.buttons[i]:execute(x, y, func)
         end
     end
