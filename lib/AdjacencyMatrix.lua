@@ -1,7 +1,7 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "17/12/2021 9:25pm"
+local UPDATED = "17/12/2021 9:30pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
@@ -55,7 +55,7 @@ function AdjacencyMatrix:connect(vert1, vert2, directed)
     ---@param vert1 number: The first vertex
     ---@param vert2 number: The second vertex
 
-    assert(AdjacencyMatrix:check_exist(vert1) and AdjacencyMatrix:check_exist(vert2), "One of the vertices do not exist")
+    assert(self:check_exist(vert1) and self:check_exist(vert2), "One of the vertices do not exist")
     self.__adjacency_matrix[vert1][vert2] = 1
     if not directed then
         self.__adjacency_matrix[vert2][vert1] = 1
@@ -119,7 +119,7 @@ function AdjacencyMatrix:generate_path(origin, target)
     ---@param target number: The end target vertex
     ---@return table: The vertices that connect origin to target (In reverse order)
 
-    local previousNodes = AdjacencyMatrix:A_star(origin, target)
+    local previousNodes = self:A_star(origin, target)
     local path = {target}
     local current = target
     while previousNodes[current] ~= nil do
@@ -145,7 +145,7 @@ function AdjacencyMatrix:A_star(start, goal)
     setmetatable(fScore, {__index = function () return math.huge end})
 
     gScore[start] = 0
-    fScore[start] = AdjacencyMatrix:euclidean_dist(start, goal)
+    fScore[start] = self:euclidean_dist(start, goal)
 
     openSet:Add(start, fScore[start])
 
@@ -155,14 +155,14 @@ function AdjacencyMatrix:A_star(start, goal)
             return previousNodes
         end
 
-        local neighbours = AdjacencyMatrix:get_neighbours(current)
+        local neighbours = self:get_neighbours(current)
 
         for _, neighbour in ipairs(neighbours) do
-            local tentative_gScore = gScore[current] + AdjacencyMatrix:euclidean_dist(current, neighbour)
+            local tentative_gScore = gScore[current] + self:euclidean_dist(current, neighbour)
             if tentative_gScore < gScore[neighbour] then
                 previousNodes[neighbour] = current
                 gScore[neighbour] = tentative_gScore
-                fScore[neighbour] = tentative_gScore + AdjacencyMatrix:euclidean_dist(neighbour, goal)
+                fScore[neighbour] = tentative_gScore + self:euclidean_dist(neighbour, goal)
                 if not openSet:contains(neighbour) then
                     openSet:Add(neighbour, fScore[neighbour])
                 end
