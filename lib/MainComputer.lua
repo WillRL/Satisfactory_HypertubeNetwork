@@ -2,7 +2,7 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "17/12/2021 9:15pm"
+local UPDATED = "17/12/2021 9:20pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
@@ -16,7 +16,7 @@ function run(size, debug, aux_screen)
     local reset_button = panel:getModule(0,0)
     local update_software = panel:getModule(9,9)
 
-    local hyper_network = AdjacencyMatrix.new(size, debug)
+    local hyper_network = AdjacencyMatrix(size, debug)
     local hyper_network_vertex_name = {}
     local hyper_network_name_vertex = {}
     local hyper_network_dest_vertices = {}
@@ -58,7 +58,7 @@ function run(size, debug, aux_screen)
 
 
         elseif name == reset_button then
-            hyper_network = AdjacencyMatrix.new(10, debug)
+            hyper_network = AdjacencyMatrix(10, debug)
             hyper_network_vertex_name = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0
@@ -72,10 +72,6 @@ function run(size, debug, aux_screen)
 
             if aux_screen then
                 destination = hyper_network_dest_vertices[hyper_network_name_vertex[data2]]
-                for i,k in ipairs(hyper_network_name_vertex) do
-                    print(i, k)
-                end
-                print(data2)
             end
 
             print("Generating Path: "..origin.."to"..destination)
@@ -115,7 +111,7 @@ function run(size, debug, aux_screen)
 
         elseif name == update_software then
             print("Updating all auxiliary computers software and resetting")
-            hyper_network = AdjacencyMatrix.new(10, debug)
+            hyper_network = AdjacencyMatrix(10, debug)
             hyper_network_vertex_name = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0
