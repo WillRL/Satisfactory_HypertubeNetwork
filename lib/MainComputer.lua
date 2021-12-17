@@ -2,7 +2,7 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "17/12/2021 10:30pm"
+local UPDATED = "17/12/2021 10:42pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
@@ -77,7 +77,7 @@ function run(size, debug, aux_screen)
 
             print("Generating Path: "..origin.."to"..destination)
 
-            local path = hyper_network:generate_path(data1,hyper_network_dest_vertices[current_entrance])
+            local path = hyper_network:generate_path(origin, destination)
             local path_string
             if #path ~= 0 then
                 path_string = path[1]
