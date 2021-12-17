@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "17/12/2021 9:32pm"
+local UPDATED = "17/12/2021 11:04pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -122,11 +122,19 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
         end
     end
 
-    local function hover(button, bool)
+    local function hover_selection(button, bool)
         if bool then
             button:setForeground({ 0, 1, 0, 1 })
         else
             button:setForeground({ 1, 1, 1, 1 })
+        end
+    end
+
+    local function hover_route(button, bool)
+        if bool then
+            button:setBackground({ 0, 0.05, 0, 1})
+        else
+            button:setBackground({ 0, 0.25, 0, 1})
         end
     end
 
@@ -164,7 +172,8 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
             route_button:execute(x, y, route)
             --gpu:setText(x, y, " ")
         elseif e == "OnMouseMove" then
-            page:execute(x, y, hover)
+            page:execute(x, y, hover_selection)
+            route_button:execute(x, y, hover_route)
 
 
         elseif mode == "new_path" then
