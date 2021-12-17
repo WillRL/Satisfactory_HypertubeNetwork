@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 5:40pm"
+local UPDATED = "17/12/2021 8:01pm"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -34,6 +34,10 @@ function PageScroller:add_button_sequential(label, dX, dY, colourBack, colourFor
     table.insert(self.buttons, new_button)
 end
 
+function PageScroller:button_count()
+    return #self.buttons
+end
+
 function PageScroller:scroll(mode ,dX, dY)
     dX = dX or 0
     dY = dY or 0
@@ -58,8 +62,10 @@ function PageScroller:scroll(mode ,dX, dY)
             dX = 0
         end
     end
-    for i=1, #self.buttons do
-        self.buttons[i]:move(dX, dY)
+    if #self.buttons ~= 0 then
+        for i=1, #self.buttons do
+            self.buttons[i]:move(dX, dY)
+        end
     end
 end
 
