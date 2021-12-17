@@ -52,10 +52,7 @@ function run(size, debug, aux_screen)
                 print("Aux screen")
                 hyper_network_name_vertex[data2] = data1
                 NetworkCard:broadcast(00000, "auxiliary", data2)
-                print("Name to vertex")
-                for i,k in ipairs(hyper_network_name_vertex) do
-                    print(i,k)
-                end
+                print(hyper_network_name_vertex[data2])
             end
 
             hyper_network_dest_vertices[#hyper_network_dest_vertices + 1] = data1
