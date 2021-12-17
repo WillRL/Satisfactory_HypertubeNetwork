@@ -1,12 +1,12 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "17/12/2021 8:58m"
+local UPDATED = "17/12/2021 9:07pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
 
-AdjacencyMatrix = {size, __debug}
+AdjacencyMatrix = {}
 AdjacencyMatrix.__index = AdjacencyMatrix
 setmetatable(AdjacencyMatrix, {__call = function(cls,...) return cls.new(...) end,})
 
