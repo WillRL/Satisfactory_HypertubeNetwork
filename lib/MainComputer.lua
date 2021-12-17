@@ -78,6 +78,7 @@ function run(size, debug, aux_screen)
             for i,k in ipairs(hyper_network_dest_vertices) do
                 print(i,k)
             end
+            print("Name to vertex")
             for i,k in ipairs(hyper_network_name_vertex) do
                 print(i,k)
             end
