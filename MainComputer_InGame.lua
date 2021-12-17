@@ -3,6 +3,8 @@
 --- DateTime: 14/12/2021 3:05 pm
 ---
 
+local AUX_SCREEN = false
+
 local card = computer.getPCIDevices(findClass("FINInternetCard"))[1]
 fs = filesystem
 
@@ -38,4 +40,4 @@ file3:close()
 
 
 fs.doFile("MainComputer.lua")
-run(10, false)
+run(10, false, AUX_SCREEN)

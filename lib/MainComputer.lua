@@ -2,12 +2,12 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "16/12/2021 3:50pm"
+local UPDATED = "17/12/2021 8:32pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
 
-function run(size, debug)
+function run(size, debug, aux_screen)
     --- Main function to run the loop.
     ---
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
@@ -17,7 +17,8 @@ function run(size, debug)
     local update_software = panel:getModule(9,9)
 
     local hyper_network = AdjacencyMatrix.new(size, debug)
-    local hyper_network_names = {}
+    local hyper_network_vertex_name = {}
+    local hyper_network_name_vertex = {}
     local hyper_network_dest_vertices = {}
     local current_entrance = 1
 
@@ -46,14 +47,19 @@ function run(size, debug)
 
 
         elseif mode == "assign_name" then
-            hyper_network_names[data1] = data2
+            hyper_network_vertex_name[data1] = data2
+            if aux_screen then
+                hyper_network_name_vertex[data2] = data1
+                NetworkCard:broadcast(00000, "auxiliary", data2)
+            end
+
             hyper_network_dest_vertices[#hyper_network_dest_vertices + 1] = data1
             print("Assigning Name: "..data1.. " with "..data2)
 
 
         elseif name == reset_button then
             hyper_network = AdjacencyMatrix.new(10, debug)
-            hyper_network_names = {}
+            hyper_network_vertex_name = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0
             NetworkCard:broadcast(00000, "reset")
@@ -61,7 +67,14 @@ function run(size, debug)
 
 
         elseif mode == "generate_path" then
-            print("Generating Path: "..data1.."to"..hyper_network_dest_vertices[current_entrance])
+            local origin = data1
+            local destination = hyper_network_dest_vertices[current_entrance]
+
+            if aux_screen then
+                destination = hyper_network_dest_vertices[hyper_network_name_vertex[data2]]
+            end
+
+            print("Generating Path: "..data1.."to"..destination)
 
             local path = hyper_network:generate_path(data1,hyper_network_dest_vertices[current_entrance])
             local path_string
@@ -91,15 +104,15 @@ function run(size, debug)
                     current_entrance = 1
                 end
             end
-            print("Cycling Destination: "..hyper_network_names[hyper_network_dest_vertices[current_entrance]])
+            print("Cycling Destination: ".. hyper_network_vertex_name[hyper_network_dest_vertices[current_entrance]])
 
-            NetworkCard:broadcast(00000, "auxiliary", hyper_network_names[hyper_network_dest_vertices[current_entrance]])
+            NetworkCard:broadcast(00000, "auxiliary", hyper_network_vertex_name[hyper_network_dest_vertices[current_entrance]])
 
 
         elseif name == update_software then
             print("Updating all auxiliary computers software and resetting")
             hyper_network = AdjacencyMatrix.new(10, debug)
-            hyper_network_names = {}
+            hyper_network_vertex_name = {}
             hyper_network_dest_vertices = {}
             current_entrance = 0
             NetworkCard:broadcast(00000, "update_software")

@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "17/12/2021 8:19pm"
+local UPDATED = "17/12/2021 8:32pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -47,6 +47,7 @@ end
 
 function run_with_screen(vertex, connections, vertex_name, screen, gpu)
     local NetworkCard = computer.getPCIDevices(findClass("NetworkCard"))[1]
+    init(vertex, connections, vertex_name, NetworkCard)
 
     local w, h = screen:getSize()
     local scale = 1.25
