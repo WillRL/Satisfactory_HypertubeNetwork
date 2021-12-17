@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "17/12/2021 8:44pm"
+local UPDATED = "17/12/2021 9:32pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -171,6 +171,7 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
             local prev, after = extract_edges(data, vertex)
             local switches, switch
             local switched = {}
+            print("Receiving path open request")
 
             for i=1, #connections do
                 switches = component.findComponent(tostring(connections[i]))
