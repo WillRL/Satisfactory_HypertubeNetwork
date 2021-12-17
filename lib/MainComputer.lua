@@ -2,7 +2,7 @@
 --- Created by Willis
 --- DateTime: 14/12/2021 2:59 pm
 ---
-local UPDATED = "17/12/2021 9:48pm"
+local UPDATED = "17/12/2021 9:51pm"
 print("Initialising MainComputer.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("AdjacencyMatrix.lua")
@@ -74,6 +74,12 @@ function run(size, debug, aux_screen)
                 destination = hyper_network_dest_vertices[hyper_network_name_vertex[data2]]
             end
             print(data2)
+            for i,k in ipairs(hyper_network_dest_vertices) do
+                print(i,k)
+            end
+            for i,k in ipairs(hyper_network_name_vertex) do
+                print(i,k)
+            end
 
             print("Generating Path: "..origin.."to"..destination)
 
