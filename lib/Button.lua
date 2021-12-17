@@ -4,7 +4,7 @@
 
 
 
-local UPDATED = "17/12/2021 1:54am"
+local UPDATED = "17/12/2021 6:53am"
 print("Initialising Button.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Boundary.lua")
@@ -25,6 +25,13 @@ function Button.new(label, xMin, xMax, yMin, yMax, colourBack, colourFore)
     return self
 end
 
+function Button:set_label(string)
+    self.label = string
+end
+
+function Button:get_label()
+    return self.label
+end
 
 function Button:setBackground(rgba)
     self.colourBack = rgba
