@@ -67,10 +67,10 @@ end
 
 function Button:execute(x,y, func)
     if(self.boundary:check(x,y, -1, -1)) then
-        func(self, true)
+        func(self, true, true)
         return true
     else
-        func(self, false)
+        func(self, false, true)
         return false
     end
 end

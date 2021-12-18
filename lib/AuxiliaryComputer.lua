@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "18/12/2021 5:51pm"
+local UPDATED = "18/12/2021 6:19pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -138,11 +138,11 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
         end
     end
 
-    local function select(button, bool)
+    local function select(button, bool, within_button)
         if bool then
             button:setBackground({ 0, 0.1, 0, 1 })
             routing_to_text:set_label(button:get_label())
-        else
+        elseif not bool and within_button then
             button:setBackground({ 0, 0, 0, 1 })
         end
     end
