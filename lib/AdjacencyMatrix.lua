@@ -1,7 +1,7 @@
 --- Created by Willis.
 --- DateTime: 11/12/2021 11:39 pm
 --- Class to represent Adjacency Matrix
-local UPDATED = "17/12/2021 9:30pm"
+local UPDATED = "18/12/2021 7:01pm"
 print("Initialising AdjacencyMatrix.lua\nLast Update:"..UPDATED)
 
 filesystem.doFile("PriorityQueue.lua")
@@ -54,7 +54,7 @@ function AdjacencyMatrix:connect(vert1, vert2, directed)
     --- Connect two vertices with an edge
     ---@param vert1 number: The first vertex
     ---@param vert2 number: The second vertex
-
+    directed = directed or true
     assert(self:check_exist(vert1) and self:check_exist(vert2), "One of the vertices do not exist")
     self.__adjacency_matrix[vert1][vert2] = 1
     if not directed then
