@@ -4,6 +4,7 @@
 ---
 
 local AUX_SCREEN = false
+local SIZE = 20
 
 local card = computer.getPCIDevices(findClass("FINInternetCard"))[1]
 fs = filesystem
@@ -40,4 +41,4 @@ file3:close()
 
 
 fs.doFile("MainComputer.lua")
-run(10, false, AUX_SCREEN)
+run(SIZE, false, AUX_SCREEN)
