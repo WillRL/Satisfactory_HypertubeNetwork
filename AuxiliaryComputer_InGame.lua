@@ -37,9 +37,9 @@ if screen and NAME then
     gpu:bindScreen(screen)
     event.listen(gpu)
 
-    local req1 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/Button.lua", "GET", "")
-    local req2 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/PageScroller.lua", "GET", "")
-    local req3 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/Boundary.lua", "GET", "")
+    local req1 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/auxiliary/Button.lua", "GET", "")
+    local req2 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/auxiliary/PageScroller.lua", "GET", "")
+    local req3 = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/auxiliary/Boundary.lua", "GET", "")
 
     local _, libdata1 = req1:await()
     local _, libdata2 = req2:await()
