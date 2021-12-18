@@ -3,7 +3,7 @@
 --- DateTime: 15/12/2021 11:35 pm
 ---
 
-local UPDATED = "17/12/2021 11:04pm"
+local UPDATED = "18/12/2021 5:51pm"
 print("Initialising AuxiliaryComputer.lua\nLast Update:"..UPDATED)
 
 local function init(vertex, connections, name, NetworkCard)
@@ -168,13 +168,13 @@ function run_with_screen(vertex, connections, vertex_name, screen, gpu)
             print(x, y)
             up_button:execute(x, y, scroll_up)
             down_button:execute(x, y, scroll_down)
-            page:execute(x, y, select, false)
+            page:execute(x, y, select, true)
             route_button:execute(x, y, route)
             --gpu:setText(x, y, " ")
-        elseif e == "OnMouseMove" then
-            page:execute(x, y, hover_selection)
-            route_button:execute(x, y, hover_route)
 
+        elseif e == "OnMouseMove" then
+            page:execute(x, y, hover_selection, false)
+            route_button:execute(x, y, hover_route)
 
         elseif mode == "new_path" then
             local prev, after = extract_edges(data, vertex)

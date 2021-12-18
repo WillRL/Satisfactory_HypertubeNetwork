@@ -4,7 +4,7 @@
 ---
 ---
 
-local UPDATED = "17/12/2021 8:01pm"
+local UPDATED = "18/12/2021 5:51pm"
 print("Initialising PageScroller.lua\nLast Update: "..UPDATED)
 
 filesystem.doFile("Button.lua")
@@ -19,6 +19,7 @@ function PageScroller.new(xMin, xMax, yMin, yMax)
 
     self.boundary = Boundary(xMin, xMax, yMin, yMax)
     self.buttons = {}
+    self.drawn_buttons = {}
 
     return self
 end
@@ -70,9 +71,11 @@ function PageScroller:scroll(mode ,dX, dY)
 end
 
 function PageScroller:draw(gpu)
+    self.drawn_buttons = {}
     for i=1, #self.buttons do
         local button = self.buttons[i]
         if self:check(button) then
+            table.insert(self.drawn_buttons, button)
             button:draw(gpu)
         end
     end
@@ -85,11 +88,20 @@ function PageScroller:check(button)
 end
 
 
-function PageScroller:execute(x,y, func, ignore_boundary)
-    ignore_boundary = false or ignore_boundary
-    for i=1, #self.buttons do
-        if ignore_boundary or self.boundary:check(x,y, 0, -1) then
-            self.buttons[i]:execute(x, y, func)
+function PageScroller:execute(x,y, func, iterate_all)
+    local buttons
+    iterate_all = false or iterate_all
+    if iterate_all then
+        buttons = self.buttons
+    else
+        buttons = self.drawn_buttons
+    end
+
+    for i=1, buttons do
+        if self.boundary:check(x,y, 0, -1) then
+            buttons[i]:execute(x, y, func)
+        else
+            func(button[i], false)
         end
     end
 end
