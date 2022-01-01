@@ -10,7 +10,7 @@ local CONNECTIONS = {}
 local NAME = nil
 
 local gpu = computer.getPCIDevices(findClass("GPUT1"))[1]
-local screen = component.proxy(component.findComponent(findClass("Screen"))[1])
+local screen = component.findComponent(findClass("Screen"))[1]
 
 
 fs = filesystem
@@ -25,7 +25,7 @@ fs.initFileSystem("/dev")
 fs.makeFileSystem("tmpfs", "tmp")
 fs.mount("/dev/"..disk_uuid,"/")
 
-local req = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/AuxiliaryComputer.lua", "GET", "")
+local req = card:request("https://raw.githubusercontent.com/WillaLR/Satisfactory_HypertubeNetwork/master/lib/auxiliary/AuxiliaryComputer.lua", "GET", "")
 local _, libdata = req:await()
 
 local file = fs.open("AuxiliaryComputer.lua", "w")
@@ -34,6 +34,7 @@ file:close()
 fs.doFile("AuxiliaryComputer.lua")
 
 if screen and NAME then
+    screen = component.proxy(screen)
     gpu:bindScreen(screen)
     event.listen(gpu)
 
